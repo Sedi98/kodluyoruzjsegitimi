@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@581&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georama:wght@300;400&display=swap" rel="stylesheet">
+    <title>Elektron Saat</title>
+
+    <style>
+        body {
+            background-color: #212F3D;
+        }
+        
+        #zaman {
+            width: 100%;
+            height: 200px;
+            margin-top: 100px;
+        }
+        
+        #divqar {
+            width: 100%;
+            color: white;
+            height: 100px;
+            text-align: center;
+            font-size: 72px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        #saat {
+            background-color: aliceblue;
+            width: 10%;
+            height: 100px;
+            float: left;
+            margin-left: 35%;
+            margin-right: 10px;
+            font-size: 72px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        #deqiqe {
+            background-color: aliceblue;
+            width: 10%;
+            height: 100px;
+            float: left;
+            margin-right: 10px;
+            font-size: 72px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        #saniye {
+            background-color: aliceblue;
+            width: 10%;
+            height: 100px;
+            float: left;
+            margin-right: 10px;
+            font-size: 72px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        #heftegun {
+            width: 100%;
+            color: white;
+            text-align: center;
+            font-size: 72px;
+            font-family: 'Georama', sans-serif;
+        }
+    </style>
+</head>
+
+<body id="background">
+
+
+    <div id="zaman">
+
+        <div id="divqar"></div>
+        <div id="saat"></div>
+        <div id="deqiqe"></div>
+        <div id="saniye"></div>
+    </div>
+    <br>
+    <div id="heftegun">0</div>
+
+</body>
+
+
+<script>
+    var saat;
+    var deqiqe;
+    var saniye;
+    var heftegunu;
+
+    var gun;
+    var ay;
+    var il;
+
+
+    function saatiGoster() {
+
+        saat = Number(saat);
+        deqiqe = Number(deqiqe);
+        saniye = Number(saniye);
+        heftegunu = Number(heftegunu);
+
+        gun = Number(gun);
+        ay = Number(ay);
+        il = Number(il);
+
+
+        saat = new Date().getHours();
+        deqiqe = new Date().getMinutes();
+        saniye = new Date().getSeconds();
+        heftegunu = new Date().getDay();
+        gun = new Date().getDate();
+        ay = new Date().getMonth();
+        ay = ay + 1;
+        il = new Date().getFullYear();
+
+
+        // saatda 10 dan kicik reqem olduqda tek reqem gorunmesinin qarsisini almaq
+
+        if (saniye < 10) {
+            saniye = "0" + saniye;
+        }
+
+        if (deqiqe < 10) {
+            deqiqe = "0" + deqiqe;
+        }
+
+        if (saat < 10) {
+            saat = "0" + saat;
+        }
+
+        if (ay < 10) {
+            ay = "0" + ay;
+        }
+
+        //reqemlere gore heftelerin gunlerini yazili gostermek
+
+        var a; //heftegunu
+        var b = ""; //fesil
+
+
+        if (heftegunu == 0) {
+            a = "Bazar"
+
+        } else if (heftegunu == 1) {
+            a = "Bazar Ertəsi"
+
+        } else if (heftegunu == 2) {
+            a = "Çərşənbə Axşamı "
+
+        } else if (heftegunu == 3) {
+            a = "Çərşənbə"
+
+        } else if (heftegunu == 4) {
+            a = "Cümə Axşamı"
+
+        } else if (heftegunu == 5) {
+            a = "Cümə"
+
+        } else if (heftegunu == 6) {
+            a = "Şənbə"
+
+        }
+
+        //Aylara gore feslin gosterilmesi
+
+        if (ay <= 2 || ay == 11) {
+            b = "Qış";
+
+        }
+
+        if (ay > 2 && ay < 6) {
+            b = "Yaz";
+
+        }
+
+        if (ay >= 6 && ay < 9) {
+            b = "Yay";
+
+        }
+
+        if (ay >= 9 && ay <= 11) {
+            b = "Payiz";
+
+        }
+
+
+        // Saata gore qarsilama mesaji....
+
+        if (saat > 6 && saat <= 12) {
+            document.getElementById("divqar").innerHTML = "Sabahınız Xeyir";
+            document.getElementById("background").style.backgroundColor = "#9FE2BF"
+            document.getElementById("divqar").style.color = "Black"
+            document.getElementById("heftegun").style.color = "Black"
+
+
+        }
+        if (saat > 12 && saat < 18) {
+            document.getElementById("divqar").innerHTML = "Günortanız Xeyir";
+            document.getElementById("background").style.backgroundColor = "#ffd27f"
+            document.getElementById("divqar").style.color = "White"
+            document.getElementById("heftegun").style.color = "White"
+
+
+        }
+        if (saat >= 18 && saat <= 23) {
+            document.getElementById("divqar").innerHTML = "Axsamınız Xeyir";
+
+
+        }
+
+
+        if (saat >= 0 && saat <= 6) {
+            document.getElementById("divqar").innerHTML = "Xeyirli Geceler";
+
+
+        }
+
+        // qarsilama mesaji son
+
+
+
+
+
+        //Ekrana tarixi yazdirma
+
+        document.getElementById("saat").innerHTML = saat
+        document.getElementById("deqiqe").innerHTML = deqiqe
+        document.getElementById("saniye").innerHTML = saniye
+        document.getElementById("heftegun").innerHTML = a + " <br>" + "Tarix: " + gun + "." + ay + "." + il + "<br>" + b;
+
+
+
+    }
+
+
+
+
+
+    var b = setInterval(saatiGoster, saat, deqiqe, saniye, 1000)
+</script>
+
+</html>
